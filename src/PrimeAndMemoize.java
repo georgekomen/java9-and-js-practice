@@ -18,16 +18,16 @@ public final class PrimeAndMemoize {
     public static Boolean memoize(final Function<Integer, Boolean> function, Integer number) {
         if (function == isPrime) {
             if (isPrimeCachedResults.containsKey(number)) {
-                System.out.println("From cache " + number);
+                System.out.println("Result got from cache for: " + number);
                 return isPrimeCachedResults.get(number);
             } else {
                 final Boolean result = function.apply(number);
                 isPrimeCachedResults.put(number, result);
-                System.out.println("Enter cache " + number);
+                System.out.println("Caching computed value for: " + number);
                 return result;
             }
         } else {
-            // handle another function
+            // handle any other function here
             return false;
         }
     }
