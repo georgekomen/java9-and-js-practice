@@ -1,11 +1,12 @@
-import java.util.function.Predicate;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
-public class PrimeAndMemoize {
+public final class PrimeAndMemoize {
+   public static Map<Function<Integer, Boolean>, Boolean> cachedResults = new HashMap();
 
-
-    public static Predicate<Integer> isPrimePredicate() {
-        return number -> {
-            if (number <= 1) return false;
+    public static Function<Integer, Boolean> isPrime = (Integer number) -> {
+        if (number <= 1) return false;
 
             for (int i = 2; i < Math.sqrt(number); i++) {
                 if (number % i == 0) {
@@ -13,6 +14,5 @@ public class PrimeAndMemoize {
                 }
             }
             return true;
-        };
-    }
+    };
 }
