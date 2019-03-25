@@ -13,7 +13,7 @@ public class Main {
         System.out.println("Actual false, Got: " + PrimeAndMemoize.isPrime.apply(999999998));
 
         // Test memoizer
-        System.out.println("Actual true, Got: " + PrimeAndMemoize.memoize(999999998));
-        System.out.println("Actual true, Got: " + PrimeAndMemoize.memoize(999999998)); // result from cache
+        System.out.println("Actual false, Got: " + PrimeAndMemoize.memoize(PrimeAndMemoize.isPrime,999999998));
+        System.out.println("Actual false, Got: " + PrimeAndMemoize.memoize(PrimeAndMemoize.isPrime,999999998)); // result from cache
     }
 }
