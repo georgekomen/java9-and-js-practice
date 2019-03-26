@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -16,5 +19,16 @@ public class Main {
         System.out.println("............Test Memoizer...............");
         System.out.println("Actual: false, Got: " + PrimeAndMemoize.memoizedIsPrime(999999998));
         System.out.println("Actual: false, Got: " + PrimeAndMemoize.memoizedIsPrime(999999998)); // result from cache
+
+        // Test collection search
+        System.out.println("............Collection search...............");
+        CollectionSearch<Integer> integerCollectionSearch = new CollectionSearch<>();
+        List<Integer> integerList = new ArrayList<>();
+        integerList.add(1);
+        integerList.add(2);
+        integerList.add(3);
+        integerList.add(4);
+        integerList.add(5);
+        System.out.println(integerCollectionSearch.searchFromCollection(integerList, -3));
     }
 }
