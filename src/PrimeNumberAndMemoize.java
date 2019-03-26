@@ -3,7 +3,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 public final class PrimeNumberAndMemoize {
-    private static Map<Function, Map<Integer, Boolean>> isPrimeCachedResults = new HashMap();
+    private static final Map<Function, Map<Integer, Boolean>> isPrimeCachedResults = new HashMap();
 
     /**
      * @param number - number to be tested if is prime or not
@@ -66,7 +66,7 @@ public final class PrimeNumberAndMemoize {
         System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.isPrime.apply(999999998));
     }
 
-    public static void testMemoize() {
+    public static void testMemoizedIsPrime() {
         System.out.println("............Test Memoizer...............");
         System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.memoizedIsPrime(999999998));
         System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.memoizedIsPrime(999999998)); // result from cache

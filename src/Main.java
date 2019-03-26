@@ -5,8 +5,8 @@ public class Main {
     }
 
     private static void runTests() {
-        PrimeNumberAndMemoize.testIsPrime();
-        PrimeNumberAndMemoize.testMemoize();
-        CollectionSearch.testSearchCollection();
+        PrimeNumberAndMemoize.testIsPrime(); // question 1 a
+        PrimeNumberAndMemoize.testMemoizedIsPrime(); // question 1 b & c
+        CollectionSearch.testSearchCollection(); // question 2
     }
 }
