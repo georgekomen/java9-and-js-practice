@@ -38,4 +38,9 @@ public final class PrimeAndMemoize {
             return result;
         }
     }
+
+
+    public static Boolean memoizedIsPrime(Integer number) {
+        return memoize(isPrime, number);
+    }
 }

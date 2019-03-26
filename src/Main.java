@@ -14,7 +14,7 @@ public class Main {
 
         // Test memoizer
         System.out.println("............Test Memoizer...............");
-        System.out.println("Actual: false, Got: " + PrimeAndMemoize.memoize(PrimeAndMemoize.isPrime,999999998));
-        System.out.println("Actual: false, Got: " + PrimeAndMemoize.memoize(PrimeAndMemoize.isPrime,999999998)); // result from cache
+        System.out.println("Actual: false, Got: " + PrimeAndMemoize.memoizedIsPrime(999999998));
+        System.out.println("Actual: false, Got: " + PrimeAndMemoize.memoizedIsPrime(999999998)); // result from cache
     }
 }
