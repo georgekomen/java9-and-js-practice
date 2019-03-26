@@ -3,7 +3,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 public final class PrimeAndMemoize {
-   public static Map<Integer, Boolean> isPrimeCachedResults = new HashMap();
+   public static Map<Function, Map<Integer, Boolean>> isPrimeCachedResults = new HashMap();
 
     public static Function<Integer, Boolean> isPrime = (final Integer number) -> {
         if (number <= 1) return false;
@@ -15,20 +15,27 @@ public final class PrimeAndMemoize {
             return true;
     };
 
-    public static Boolean memoize(final Function<Integer, Boolean> function, Integer number) {
-        if (function == isPrime) {
-            if (isPrimeCachedResults.containsKey(number)) {
+    public static Boolean memoize(final Function function, Integer number) {
+        if (isPrimeCachedResults.containsKey(function)) {
+            if (isPrimeCachedResults.get(function).containsKey(number)) {
                 System.out.println("Result got from cache for: " + number);
-                return isPrimeCachedResults.get(number);
+                return isPrimeCachedResults.get(function).get(number);
             } else {
-                final Boolean result = function.apply(number);
-                isPrimeCachedResults.put(number, result);
+                final Boolean result = (Boolean) function.apply(number);
+
                 System.out.println("Caching computed value for: " + number);
+                isPrimeCachedResults.get(function).put(number, result);
                 return result;
             }
         } else {
-            // handle any other function here
-            return false;
+            final Boolean result = (Boolean) function.apply(number);
+
+            Map<Integer, Boolean> resultMap = new HashMap<>();
+            resultMap.put(number, result);
+
+            System.out.println("Caching computed value for: " + number);
+            isPrimeCachedResults.put(function, resultMap);
+            return result;
         }
     }
 }
