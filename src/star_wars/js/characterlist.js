@@ -7,7 +7,7 @@ request.onload = function() {
 
         var html = "<ul>";
         for (var i = 0; i < data.results.length; i++) {
-            html+="<li>"+data.results[i].name+"</li>";
+            html += "<li onclick='getOneCharacter(this.id)' id=" + data.results[i].url + ">" + data.results[i].name + "</li>";
         }
         html+="</ul>";
         document.getElementById("character_list").innerHTML = html;
@@ -17,3 +17,8 @@ request.onload = function() {
     }
 };
 request.send();
+
+
+function getOneCharacter(id) {
+    console.log(id);
+}
