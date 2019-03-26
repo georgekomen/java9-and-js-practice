@@ -7,7 +7,7 @@ request.onload = function() {
 
         var html = "<ul>";
         for (var i = 0; i < data.results.length; i++) {
-            html += "<li onclick='getOneCharacter(this.id)' id=" + data.results[i].url + ">" + data.results[i].name + "</li>";
+            html += "<li onclick='gotToDetailsPage(this.id)' id=" + data.results[i].url + ">" + data.results[i].name + "</li>";
         }
         html+="</ul>";
         document.getElementById("character_list").innerHTML = html;
@@ -19,6 +19,7 @@ request.onload = function() {
 request.send();
 
 
-function getOneCharacter(id) {
-    console.log(id);
+function gotToDetailsPage(url) {
+    var querystring = '?detailsUrl=' + url;
+    window.open('./details.html' + querystring, '_blank');
 }
