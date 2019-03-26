@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public final class PrimeAndMemoize {
+public final class PrimeNumberAndMemoize {
     private static Map<Function, Map<Integer, Boolean>> isPrimeCachedResults = new HashMap();
 
     /**
@@ -60,15 +60,15 @@ public final class PrimeAndMemoize {
 
     public static void testIsPrime() {
         System.out.println("............Test prime number function..");
-        System.out.println("Actual: true, Got: " + PrimeAndMemoize.isPrime.apply(2));
-        System.out.println("Actual: false, Got: " + PrimeAndMemoize.isPrime.apply(-1));
-        System.out.println("Actual: true, Got: " + PrimeAndMemoize.isPrime.apply(101));
-        System.out.println("Actual: false, Got: " + PrimeAndMemoize.isPrime.apply(999999998));
+        System.out.println("Actual: true, Got: " + PrimeNumberAndMemoize.isPrime.apply(2));
+        System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.isPrime.apply(-1));
+        System.out.println("Actual: true, Got: " + PrimeNumberAndMemoize.isPrime.apply(101));
+        System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.isPrime.apply(999999998));
     }
 
     public static void testMemoize() {
         System.out.println("............Test Memoizer...............");
-        System.out.println("Actual: false, Got: " + PrimeAndMemoize.memoizedIsPrime(999999998));
-        System.out.println("Actual: false, Got: " + PrimeAndMemoize.memoizedIsPrime(999999998)); // result from cache
+        System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.memoizedIsPrime(999999998));
+        System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.memoizedIsPrime(999999998)); // result from cache
     }
 }
