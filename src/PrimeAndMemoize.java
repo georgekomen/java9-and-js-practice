@@ -5,6 +5,10 @@ import java.util.function.Function;
 public final class PrimeAndMemoize {
     private static Map<Function, Map<Integer, Boolean>> isPrimeCachedResults = new HashMap();
 
+    /**
+     * @param number - number to be tested if is prime or not
+     *
+     */
     private static Function<Integer, Boolean> isPrime = (final Integer number) -> {
         if (number <= 1) return false;
             for (int i = 2; i < Math.sqrt(number); i++) {
@@ -15,6 +19,11 @@ public final class PrimeAndMemoize {
             return true;
     };
 
+    /**
+     * @param function - function whose results should be cached and returned previously cached results
+     * @param number - parameter of the function above
+     * @returns boolean result
+     */
     private static Boolean memoize(final Function function, Integer number) {
         if (isPrimeCachedResults.containsKey(function)) {
             if (isPrimeCachedResults.get(function).containsKey(number)) {
@@ -40,12 +49,16 @@ public final class PrimeAndMemoize {
     }
 
 
+    /**
+     * @param number - parameter
+     * Memoized version of isPrime function
+     * @return
+     */
     private static Boolean memoizedIsPrime(Integer number) {
         return memoize(isPrime, number);
     }
 
     public static void testIsPrime() {
-        // Test prime number function
         System.out.println("............Test prime number function..");
         System.out.println("Actual: true, Got: " + PrimeAndMemoize.isPrime.apply(2));
         System.out.println("Actual: false, Got: " + PrimeAndMemoize.isPrime.apply(-1));
@@ -54,7 +67,6 @@ public final class PrimeAndMemoize {
     }
 
     public static void testMemoize() {
-        // Test memoizer
         System.out.println("............Test Memoizer...............");
         System.out.println("Actual: false, Got: " + PrimeAndMemoize.memoizedIsPrime(999999998));
         System.out.println("Actual: false, Got: " + PrimeAndMemoize.memoizedIsPrime(999999998)); // result from cache

@@ -3,12 +3,16 @@ import java.util.List;
 
 public class CollectionSearch<T> {
 
+    /**
+     * @param list - collection of generic type
+     * @param searchTerm - object to be searched inside the collection
+     * @return
+     */
     private int searchFromCollection(List<T> list, T searchTerm) {
         return list.indexOf(searchTerm);
     }
 
     public static void testSearchCollection() {
-        // Test collection search
         System.out.println("............Collection search...............");
         CollectionSearch<Integer> integerCollectionSearch = new CollectionSearch<>();
         List<Integer> integerList = new ArrayList<>();
