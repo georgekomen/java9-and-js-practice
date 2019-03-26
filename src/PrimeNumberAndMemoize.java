@@ -27,7 +27,7 @@ public final class PrimeNumberAndMemoize {
     private static Boolean memoize(final Function function, Integer number) {
         if (isPrimeCachedResults.containsKey(function)) {
             if (isPrimeCachedResults.get(function).containsKey(number)) {
-                System.out.println("Result got from cache for: " + number);
+                System.out.println("Result got from cache for: " + number + " memoize worked!");
                 return isPrimeCachedResults.get(function).get(number);
             } else {
                 final Boolean result = (Boolean) function.apply(number);
@@ -52,7 +52,8 @@ public final class PrimeNumberAndMemoize {
     /**
      * @param number - parameter
      * Memoized version of isPrime function
-     * @return
+     * return result if it exists in cache, if not, compute the result store it in cache and then return the result
+     * @return boolean result 'prime number or not'
      */
     private static Boolean memoizedIsPrime(Integer number) {
         return memoize(isPrime, number);
@@ -60,15 +61,15 @@ public final class PrimeNumberAndMemoize {
 
     public static void testIsPrime() {
         System.out.println("............Test prime number function..");
-        System.out.println("Actual: true, Got: " + PrimeNumberAndMemoize.isPrime.apply(2));
-        System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.isPrime.apply(-1));
-        System.out.println("Actual: true, Got: " + PrimeNumberAndMemoize.isPrime.apply(101));
-        System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.isPrime.apply(999999998));
+        System.out.println("Expected:: true, Actual: " + PrimeNumberAndMemoize.isPrime.apply(2));
+        System.out.println("Expected:: false, Actual: " + PrimeNumberAndMemoize.isPrime.apply(-1));
+        System.out.println("Expected:: true, Actual: " + PrimeNumberAndMemoize.isPrime.apply(101));
+        System.out.println("Expected:: false, Actual: " + PrimeNumberAndMemoize.isPrime.apply(999999998));
     }
 
     public static void testMemoizedIsPrime() {
         System.out.println("............Test Memoizer...............");
-        System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.memoizedIsPrime(999999998));
-        System.out.println("Actual: false, Got: " + PrimeNumberAndMemoize.memoizedIsPrime(999999998)); // result from cache
+        System.out.println("Expected:: false, Actual: " + PrimeNumberAndMemoize.memoizedIsPrime(999999998));
+        System.out.println("Expected:: false, Actual: " + PrimeNumberAndMemoize.memoizedIsPrime(999999998)); // result from cache
     }
 }

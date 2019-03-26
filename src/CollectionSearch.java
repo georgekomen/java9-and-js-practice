@@ -6,7 +6,7 @@ public class CollectionSearch<T> {
     /**
      * @param list - collection of generic type
      * @param searchTerm - object to be searched inside the collection
-     * @return
+     * @return index of object searched in the collection
      */
     private int searchFromCollection(List<T> list, T searchTerm) {
         return list.indexOf(searchTerm);
@@ -21,9 +21,9 @@ public class CollectionSearch<T> {
         integerList.add(3);
         integerList.add(4);
         integerList.add(9);
-        System.out.println("Actual -1, Got: " + integerCollectionSearch.searchFromCollection(integerList, -3));
-        System.out.println("Actual 2, Got: " + integerCollectionSearch.searchFromCollection(integerList, 3));
-        System.out.println("Actual 0, Got: " + integerCollectionSearch.searchFromCollection(integerList, 1));
-        System.out.println("Actual 4, Got: " + integerCollectionSearch.searchFromCollection(integerList, 9));
+        System.out.println("Expected: -1, Actual: " + integerCollectionSearch.searchFromCollection(integerList, -3));
+        System.out.println("Expected: 2, Actual: " + integerCollectionSearch.searchFromCollection(integerList, 3));
+        System.out.println("Expected: 0, Actual: " + integerCollectionSearch.searchFromCollection(integerList, 1));
+        System.out.println("Expected: 4, Actual: " + integerCollectionSearch.searchFromCollection(integerList, 9));
     }
 }
