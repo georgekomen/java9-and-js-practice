@@ -79,6 +79,7 @@ request.onload = function() {
         }
 
         document.getElementById("details_div").innerHTML = html;
+        document.getElementById('loader').style.visibility = 'hidden';
 
     } else {
         alert('error fetching data');

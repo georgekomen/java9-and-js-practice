@@ -18,6 +18,8 @@ request.onload = function() {
         html+="</ul>";
         document.getElementById("character_list").innerHTML = html;
 
+        document.getElementById('loader').style.visibility = 'hidden';
+
     } else {
         alert('error fetching data');
     }
