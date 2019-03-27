@@ -7,9 +7,9 @@ request.onload = function() {
     // Begin accessing JSON data here
     var data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400) {
-        var html = "<h1>" + data.name + "</h1>";
+        var html = "<h2>" + data.name + "</h2>";
         html += "<span>";
-        html += "<h1>" + "Bio information" + "</h1>";
+        html += "<h3>" + "Bio information" + "</h3>";
         html += "Height: " + data.height;
         html += "<br>";
         html += "Mass: " + data.mass;
@@ -32,33 +32,41 @@ request.onload = function() {
         html += "<br>";
         html += "</span>";
 
-        html += "<h1>" + "Films" + "</h1>";
-        html += "<ul>";
-        for (var i = 0; i < data.films.length; i++) {
-            html += "<li>" + data.films[i] + "</li>";
+        if (data.films.length > 0) {
+            html += "<h3>" + "Films" + "</h3>";
+            html += "<ul>";
+            for (var i = 0; i < data.films.length; i++) {
+                html += "<li>" + data.films[i] + "</li>";
+            }
+            html += "</ul>";
         }
-        html+="</ul>";
 
-        html += "<h1>" + "Species" + "</h1>";
-        html += "<ul>";
-        for (var i = 0; i < data.species.length; i++) {
-            html += "<li>" + data.species[i] + "</li>";
+        if (data.species.length > 0) {
+            html += "<h3>" + "Species" + "</h3>";
+            html += "<ul>";
+            for (var i = 0; i < data.species.length; i++) {
+                html += "<li>" + data.species[i] + "</li>";
+            }
+            html += "</ul>";
         }
-        html+="</ul>";
 
-        html += "<h1>" + "Vehicles" + "</h1>";
-        html += "<ul>";
-        for (var i = 0; i < data.vehicles.length; i++) {
-            html += "<li>" + data.vehicles[i] + "</li>";
+        if (data.vehicles.length > 0) {
+            html += "<h3>" + "Vehicles" + "</h3>";
+            html += "<ul>";
+            for (var i = 0; i < data.vehicles.length; i++) {
+                html += "<li>" + data.vehicles[i] + "</li>";
+            }
+            html += "</ul>";
         }
-        html+="</ul>";
 
-        html += "<h1>" + "Starships" + "</h1>";
-        html += "<ul>";
-        for (var i = 0; i < data.starships.length; i++) {
-            html += "<li>" + data.starships[i] + "</li>";
+        if (data.starships.length > 0) {
+            html += "<h3>" + "Starships" + "</h3>";
+            html += "<ul>";
+            for (var i = 0; i < data.starships.length; i++) {
+                html += "<li>" + data.starships[i] + "</li>";
+            }
+            html += "</ul>";
         }
-        html+="</ul>";
 
         document.getElementById("details_div").innerHTML = html;
 
