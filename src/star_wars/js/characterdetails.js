@@ -1,13 +1,20 @@
 var urlParams = new URLSearchParams(window.location.search);
 var detailsUrl = urlParams.get('detailsUrl');
-
+var data;
 var request = new XMLHttpRequest();
 request.open('GET', detailsUrl, true);
 request.onload = function() {
     // Begin accessing JSON data here
-    var data = JSON.parse(this.response);
+    data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400) {
-        var html = "<h2>" + data.name + "</h2>";
+        var html = "<h2>" + data.name;
+        if (data.favourite) {
+            html += "<i style='margin-left: 1em;  color: red' onclick='makeFavourite(this.id)' class='fas fa-heart'" + "id=" + data.url + "></i>";
+        } else {
+            html += "<i style='margin-left: 1em; color: grey' onclick='makeFavourite(this.id)' class='fas fa-heart'" + "id=" + data.url + "></i>";
+        }
+        html += "</h2>";
+
         html += "<span>";
         html += "<h3>" + "Bio information" + "</h3>";
         html += "Height: " + data.height;
@@ -75,3 +82,8 @@ request.onload = function() {
     }
 };
 request.send();
+
+function makeFavourite(url) {
+    document.getElementById(url).style.color = 'red';
+    data.favourite = true;
+}
