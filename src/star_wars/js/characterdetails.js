@@ -13,6 +13,9 @@ request.onload = function() {
         } else {
             html += "<i style='margin-left: 1em; color: grey' onclick='makeFavourite(this.id)' class='fas fa-heart'" + "id=" + data.url + "></i>";
         }
+        if (isFavourite(data.url)) {
+            html += "<i style='margin-left: 1em; color: grey' onclick='removeFromFavourite(this.id)' class='fas fa-trash-alt'" + "id=" + data.url + "></i>";
+        }
         html += "</h2>";
 
         html += "<span>";
@@ -95,7 +98,6 @@ function makeFavourite(url) {
     }
     localStorage.setItem('favouritesMap', JSON.stringify(favouritesMap));
     document.getElementById(url).style.color = 'red';
-    data.favourite = true;
 }
 
 function isFavourite(url) {
@@ -103,4 +105,11 @@ function isFavourite(url) {
     if (!!url && !!favouritesMap) {
         return favouritesMap.includes(url);
     }
+}
+
+function removeFromFavourite(url) {
+    var favouritesMap = JSON.parse(localStorage.getItem('favouritesMap'));
+    favouritesMap.splice(favouritesMap.indexOf(url), 1);
+    localStorage.setItem('favouritesMap', JSON.stringify(favouritesMap));
+    document.getElementById(url).style.color = 'grey';
 }
