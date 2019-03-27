@@ -8,7 +8,7 @@ request.onload = function() {
     data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400) {
         var html = "<h2>" + data.name;
-        if (data.favourite) {
+        if (isFavourite(data.url)) {
             html += "<i style='margin-left: 1em;  color: red' onclick='makeFavourite(this.id)' class='fas fa-heart'" + "id=" + data.url + "></i>";
         } else {
             html += "<i style='margin-left: 1em; color: grey' onclick='makeFavourite(this.id)' class='fas fa-heart'" + "id=" + data.url + "></i>";
@@ -84,6 +84,23 @@ request.onload = function() {
 request.send();
 
 function makeFavourite(url) {
+    var favouritesMap = JSON.parse(localStorage.getItem('favouritesMap'));
+    if (!!favouritesMap) {
+        if (!favouritesMap.includes(url)) {
+            favouritesMap.push(url);
+        }
+    } else {
+        favouritesMap = [];
+        favouritesMap.push(url);
+    }
+    localStorage.setItem('favouritesMap', JSON.stringify(favouritesMap));
     document.getElementById(url).style.color = 'red';
     data.favourite = true;
+}
+
+function isFavourite(url) {
+    var favouritesMap = JSON.parse(localStorage.getItem('favouritesMap'));
+    if (!!url && !!favouritesMap) {
+        return favouritesMap.includes(url);
+    }
 }

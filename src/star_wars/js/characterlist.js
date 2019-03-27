@@ -7,7 +7,13 @@ request.onload = function() {
 
         var html = "<ul>";
         for (var i = 0; i < data.results.length; i++) {
-            html += "<li onclick='gotToDetailsPage(this.id)' id=" + data.results[i].url + ">" + data.results[i].name + "</li>";
+            html += "<li onclick='gotToDetailsPage(this.id)' id=" + data.results[i].url + ">" + data.results[i].name;
+            if (isFavourite(data.results[i].url)) {
+                html += "<i style='margin-left: 1em; color: red' class='fas fa-heart'></i>";
+            } else {
+
+            }
+            html += "</li>";
         }
         html+="</ul>";
         document.getElementById("character_list").innerHTML = html;
@@ -22,4 +28,12 @@ request.send();
 function gotToDetailsPage(url) {
     var querystring = '?detailsUrl=' + url;
     window.open('./details.html' + querystring, '_blank');
+}
+
+
+function isFavourite(url) {
+    var favouritesMap = JSON.parse(localStorage.getItem('favouritesMap'));
+    if (!!url && !!favouritesMap) {
+        return favouritesMap.includes(url);
+    }
 }
