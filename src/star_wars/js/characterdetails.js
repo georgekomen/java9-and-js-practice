@@ -7,8 +7,60 @@ request.onload = function() {
     // Begin accessing JSON data here
     var data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400) {
+        var html = "<h1>" + data.name + "</h1>";
+        html += "<span>";
+        html += "<h1>" + "Bio information" + "</h1>";
+        html += "Height: " + data.height;
+        html += "<br>";
+        html += "Mass: " + data.mass;
+        html += "<br>";
+        html += "Hair color: " + data.hair_color;
+        html += "<br>";
+        html += "Skin color: " + data.skin_color;
+        html += "<br>";
+        html += "Eye color: " + data.eye_color;
+        html += "<br>";
+        html += "Birth year: " + data.birth_year;
+        html += "<br>";
+        html += "Gender: " + data.gender;
+        html += "<br>";
+        html += "Home world: " + data.home_world;
+        html += "<br>";
+        html += "Created: " + data.created;
+        html += "<br>";
+        html += "url: " + data.url;
+        html += "<br>";
+        html += "</span>";
 
-        console.log(data);
+        html += "<h1>" + "Films" + "</h1>";
+        html += "<ul>";
+        for (var i = 0; i < data.films.length; i++) {
+            html += "<li>" + data.films[i] + "</li>";
+        }
+        html+="</ul>";
+
+        html += "<h1>" + "Species" + "</h1>";
+        html += "<ul>";
+        for (var i = 0; i < data.species.length; i++) {
+            html += "<li>" + data.species[i] + "</li>";
+        }
+        html+="</ul>";
+
+        html += "<h1>" + "Vehicles" + "</h1>";
+        html += "<ul>";
+        for (var i = 0; i < data.vehicles.length; i++) {
+            html += "<li>" + data.vehicles[i] + "</li>";
+        }
+        html+="</ul>";
+
+        html += "<h1>" + "Starships" + "</h1>";
+        html += "<ul>";
+        for (var i = 0; i < data.starships.length; i++) {
+            html += "<li>" + data.starships[i] + "</li>";
+        }
+        html+="</ul>";
+
+        document.getElementById("details_div").innerHTML = html;
 
     } else {
         alert('error fetching data');
